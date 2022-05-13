@@ -1,0 +1,126 @@
+<div class="s">
+<div class="container">
+    <div class="profile-card js-profile-card">
+      <div class="img">
+        <img [src]="this.SetImage()" alt="profile card">
+      </div>
+      <div class="cnt">
+        <div class="name">{{this.user.firstName}} {{this.user.lastName}}</div>
+        <div class="profile-card-loc">
+            <span class="icon dark-icon">
+                <fa-icon  [icon]="faMapMarkerAlt"></fa-icon>
+            </span>
+    
+            <span class="txt">
+              {{this.user.city}}, {{this.user.county}}
+            </span>
+            <div class="rate">
+              <span class="dark-icon">Rate Me :  </span>
+              <span class="fa fa-star checked"><fa-icon [icon]="faStar"></fa-icon></span>
+              <span class="fa fa-star checked"><fa-icon [icon]="faStar"></fa-icon></span>
+              <span class="fa fa-star checked"><fa-icon [icon]="faStar"></fa-icon></span>
+              <span class="fa fa-star"><fa-icon [icon]="faStar"></fa-icon></span>
+              <span class="fa fa-star"><fa-icon [icon]="faStar"></fa-icon></span>
+            </div>
+            
+          </div>
+          
+          <div class="ctr">
+            <button class="button"  routerLink="/chat" *ngIf="this.auth.email != this.email"> Contact with me  <span class="icon"><fa-icon  [icon]="faCommentAlt"></fa-icon></span></button>
+            <button class="button" *ngIf="this.auth.email != this.email">Follow Me </button>
+          </div>
+          <button class="button" routerLink="/advertise" *ngIf="this.auth.email == this.email">Post your Product </button>
+          <button class="button" [routerLink]="['/editprofile', this.email]" *ngIf="this.auth.email == this.email">Edit your Profile</button>
+          
+
+        </div>
+        
+        <div class="row" *ngFor="let product of products">
+          <div class="" >
+          <div class="card mb-4" >
+          <img [src]="SetImageProduct(product)" class="card-img-top" height="200px">
+          <div class="card-body">
+            <h5 class="card-title">
+                {{product.productName}}
+            </h5>
+            <p class="card-text">{{product.productDescription}}</p>
+          </div>
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item">
+              <div >
+                <p class="card-text"><small class="text-muted">BY:</small> {{product.ownerFirstName }} {{product.ownerLastName}}</p>
+              </div>
+           
+          </li>
+          <div>
+            <li class="list-group-item">{{product.productPrice  | currency}}
+              <button type="button" *ngIf="this.auth.email != this.email" class="btn btn-dark">Swap</button>
+              <button type="button" *ngIf="this.auth.email == this.email" class="btn btn-danger ml-4" (click)="RemoveProductFromAllFiles(product.productName)">Delete</button>
+              <!-- <button type="button" *ngIf="this.auth.email == this.email" class="btn btn-dark" id ="edi">Edit</button> -->
+              
+              <div class="card-body">
+              <a class="card-link " (click)="AddToFav(product)" ><fa-icon [icon]="faHeart"></fa-icon></a>
+              <a  class="card-link" (click)="AddToCart(product)"><fa-icon [icon]="faCartPlus "></fa-icon></a>
+      
+              </div>
+           
+              </li>
+            </div>
+            
+            <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+            
+          </ul>
+         
+        </div>
+      </div>
+      </div>
+        <!-- <div class="container" >
+          <div class="row" *ngFor="let product of products">
+              <div class="" >
+              <div class="card" >
+              <img [src]="product.photo" class="card-img-top" height="200px">
+              <div class="card-body">
+                <h5 class="card-title">
+                    {{product.category}}
+                </h5>
+                <p class="card-text">{{product.desc}}</p>
+              </div>
+              <ul class="list-group list-group-flush">
+                <li class="list-group-item">
+                  
+                  <div >
+                    <p class="card-text"><small class="text-muted">BY:</small> {{product.owner}}</p>
+
+                   </div>
+               
+              </li>
+              <div>
+                <li class="list-group-item">{{product.price  | currency}}
+                  <button type="button" class="btn btn-dark">Swap</button>
+                  <button type="button" class="btn btn-dark" id ="del">Delete</button>
+
+                  <div class="card-body">
+                      <a class="card-link " routerLink="/fav"><fa-icon [icon]="faHeart"></fa-icon></a>
+                      <a  class="card-link" routerLink="/cart"><fa-icon [icon]="faCartPlus "></fa-icon></a>
+               </div>
+               
+              </li>
+             </div>
+                
+                <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+      
+               
+              </ul>
+             
+            </div>
+          </div>
+        </div>
+    
+      
+      </div> -->
+      
+    
+        
+</div>   
+</div>
+</div>
